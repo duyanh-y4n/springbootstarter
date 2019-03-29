@@ -14,7 +14,15 @@ public class TopicService {
             new Topic("4", "Old Topic", "some description")
     );
 
-    List<Topic> getAllTopics() {
+    public List<Topic> getAllTopics() {
         return this.topics;
+    }
+    
+    public Topic getTopicById(String id) {
+        for (Topic topic :
+                this.topics) {
+            if (topic.getId().equals(id)) return topic;
+        }
+        return new Topic("-1", "Topic not found", "");
     }
 }
