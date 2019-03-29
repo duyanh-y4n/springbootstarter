@@ -1,9 +1,7 @@
 package io.javabrains.springbootstarter.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +17,14 @@ public class TopicController {
     }
 
     @RequestMapping("/topics/{foo}") //foo is path variabale
-    public Topic getTopicById(@PathVariable("foo") String id){ //foo here is passed into id parameter
+    public Topic getTopicById(@PathVariable("foo") String id) { //foo here is passed into id parameter
         return this.topicService.getTopicById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/topics") //POST request
+    // expect a Topic object in request body as payload, and then pass it to methode
+    public void addTopic(@RequestBody Topic topic) {
+        this.topicService.addTopic(topic);
     }
 
 }
